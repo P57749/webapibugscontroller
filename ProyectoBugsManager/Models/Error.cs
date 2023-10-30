@@ -1,3 +1,5 @@
+namespace ProyectoBugsManager.Models;
+
 public class Error
 {
     public int Id { get; set; }

@@ -1,3 +1,6 @@
+namespace ProyectoBugsManager.Models;
+
+
 public class Proyecto
 {
     public int Id { get; set; }
