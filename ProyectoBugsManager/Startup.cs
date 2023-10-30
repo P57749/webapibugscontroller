@@ -1,6 +1,5 @@
-using System;
+using ProyectoBugsManager.Data;
 
-namespace Bugs;
 
 public void ConfigureServices(IServiceCollection services)
 {
