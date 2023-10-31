@@ -1,0 +1,17 @@
+@page
+@model DeleteModel
+@{
+    ViewData["Title"] = "Eliminar error";
+}
+
+<div class="text-center">
+    <h1 class="display-4">¿Estás seguro de que quieres eliminar este error?</h1>
+    <form method="post">
+        <div>
+            <input type="hidden" name="ErrorId" value="@Model.Error.ErrorId" />
+        </div>
+        <div>
+            <input type="submit" value="Eliminar" />
+        </div>
+    </form>
+</div>

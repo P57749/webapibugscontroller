@@ -65,14 +65,20 @@ public class BugController : ControllerBase
     }
 
     // POST: api/Bug
-    [HttpPost]
-    public async Task<ActionResult<Error>> PostError(Error error)
+[HttpPost]
+public async Task<ActionResult<Error>> PostError(Error error)
+{
+    if (!ModelState.IsValid)
     {
-        _context.Errors.Add(error);
-        await _context.SaveChangesAsync();
-
-        return CreatedAtAction("GetError", new { id = error.ErrorId }, error);
+        return BadRequest(ModelState);
     }
+
+    _context.Errors.Add(error);
+    await _context.SaveChangesAsync();
+
+    return CreatedAtAction("GetError", new { id = error.ErrorId }, error);
+}
+
 
     // DELETE: api/Bug/5
     [HttpDelete("{id}")]
@@ -94,4 +100,21 @@ public class BugController : ControllerBase
     {
         return _context.Errors.Any(e => e.ErrorId == id);
     }
+
+    // GET: api/Bug?pageNumber=1&pageSize=10&sortBy=Description
+[HttpGet]
+public async Task<ActionResult<IEnumerable<Error>>> GetErrors(int pageNumber = 1, int pageSize = 10, string sortBy = "Description")
+{
+    var errors = _context.Errors.AsQueryable();
+
+    if (!string.IsNullOrEmpty(sortBy))
+    {
+        errors = string.Equals(sortBy, "Description", StringComparison.OrdinalIgnoreCase) ? errors.OrderBy(e => e.Description) : errors.OrderBy(e => e.ErrorId);
+    }
+
+    return await errors.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
 }
+
+}
+
+
