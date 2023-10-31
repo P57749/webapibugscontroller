@@ -2,6 +2,8 @@ using ProyectoBugsManager.Data;
 using Microsoft.EntityFrameworkCore;
 using ProyectoBugsManager.Models;
 
+
+
 [Route("api/[controller]")]
 [ApiController]
 public class BugController : ControllerBase
@@ -14,17 +16,17 @@ public class BugController : ControllerBase
     }
 
     // GET: api/Bug
-    [HttpGet]
+    //[HttpGet]
     public async Task<ActionResult<IEnumerable<Error>>> GetErrors()
     {
-        return await _context.Errors.ToListAsync();
+        return await _context.Errores.ToListAsync();
     }
 
     // GET: api/Bug/5
-    [HttpGet("{id}")]
+    //[HttpGet("{id}")]
     public async Task<ActionResult<Error>> GetError(int id)
     {
-        var error = await _context.Errors.FindAsync(id);
+        var error = await _context.Errores.FindAsync(id);
 
         if (error == null)
         {
@@ -35,7 +37,7 @@ public class BugController : ControllerBase
     }
 
     // PUT: api/Bug/5
-    [HttpPut("{id}")]
+    //[HttpPut("{id}")]
     public async Task<IActionResult> PutError(int id, Error error)
     {
         if (id != error.ErrorId)
@@ -65,7 +67,7 @@ public class BugController : ControllerBase
     }
 
     // POST: api/Bug
-[HttpPost]
+//[HttpPost]
 public async Task<ActionResult<Error>> PostError(Error error)
 {
     if (!ModelState.IsValid)
@@ -81,16 +83,16 @@ public async Task<ActionResult<Error>> PostError(Error error)
 
 
     // DELETE: api/Bug/5
-    [HttpDelete("{id}")]
+    //[HttpDelete("{id}")]
     public async Task<IActionResult> DeleteError(int id)
     {
-        var error = await _context.Errors.FindAsync(id);
+        var error = await _context.Errores.FindAsync(id);
         if (error == null)
         {
             return NotFound();
         }
 
-        _context.Errors.Remove(error);
+        _context.Errores.Remove(error);
         await _context.SaveChangesAsync();
 
         return NoContent();
@@ -98,14 +100,14 @@ public async Task<ActionResult<Error>> PostError(Error error)
 
     private bool ErrorExists(int id)
     {
-        return _context.Errors.Any(e => e.ErrorId == id);
+        return _context.Errores.Any(e => e.ErrorId == id);
     }
 
     // GET: api/Bug?pageNumber=1&pageSize=10&sortBy=Description
-[HttpGet]
+//[HttpGet]
 public async Task<ActionResult<IEnumerable<Error>>> GetErrors(int pageNumber = 1, int pageSize = 10, string sortBy = "Description")
 {
-    var errors = _context.Errors.AsQueryable();
+    var errors = _context.Errores.AsQueryable();
 
     if (!string.IsNullOrEmpty(sortBy))
     {

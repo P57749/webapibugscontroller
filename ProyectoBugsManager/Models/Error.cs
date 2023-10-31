@@ -2,22 +2,22 @@ namespace ProyectoBugsManager.Models;
 
 public class Error
 {
-    [Key]
+    //[Key]
     public int ErrorId { get; set; }
 
-    [Required]
+    //[Required]
     public string Description { get; set; }
 
-    [Required]
+    //[Required]
     public int ProyectoId { get; set; }
 
-    [Required]
+    //[Required]
     public int UserId { get; set; }
 
-    [Required]
+    //[Required]
     public DateTime Date { get; set; }
 
     // Relaciones con otros modelos
     public Proyecto Proyecto { get; set; }
-    public User User { get; set; }
+    public Usuario User { get; set; }
 }
