@@ -13,7 +13,6 @@ namespace ProyectoBugsManager.Data
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Proyecto> Proyectos { get; set; }
         public DbSet<Error> Errores { get; set; }
-        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
         modelBuilder.Entity<Proyecto>()
