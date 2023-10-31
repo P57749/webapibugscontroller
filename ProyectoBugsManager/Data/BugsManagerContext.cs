@@ -24,10 +24,6 @@ namespace ProyectoBugsManager.Data
         .HasMany(u => u.Errores)
         .WithOne(e => e.User)
         .HasForeignKey(e => e.UserId);
-            }
-
-
-
-
+                }
             }
 }

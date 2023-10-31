@@ -9,9 +9,9 @@ public class Startup
     {
         Configuration = configuration;
     }
-    protected void ConfigureServices(IServiceCollection services)
+    public void ConfigureServices(IServiceCollection services)
 {
     services.AddDbContext<BugsManagerContext>(options =>
-        options.UseSqlServer(Configuration.GetConnectionString("BugsManagerDatabase")));
+        options.UseSqlServer(Configuration.GetConnectionString("BugsManagerContext")));
 }
 }
