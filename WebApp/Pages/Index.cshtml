@@ -1,0 +1,30 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Lista de errores";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Lista de errores</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Proyecto</th>
+                <th>Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var error in Model.Errors)
+            {
+                <tr>
+                    <td>@error.ErrorId</td>
+                    <td>@error.Description</td>
+                    <td>@error.Proyecto.Name</td>
+                    <td>@error.User.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

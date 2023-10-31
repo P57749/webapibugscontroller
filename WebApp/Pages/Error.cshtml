@@ -1,0 +1,11 @@
+@page
+@model ErrorModel
+@{
+    ViewData["Title"] = "Detalle del error";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@Model.Error.Description</h1>
+    <p>Proyecto: @Model.Error.Proyecto.Name</p>
+    <p>Usuario: @Model.Error.User.Name</p>
+</div>
