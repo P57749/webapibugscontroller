@@ -1,0 +1,36 @@
+@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Crear nuevo error";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Crear nuevo error</h1>
+    <form method="post">
+        <div>
+            <label for="Description">Descripción:</label>
+            <input id="Description" type="text" name="Description" required />
+        </div>
+        <div>
+            <label for="ProyectoId">Proyecto:</label>
+            <select id="ProyectoId" name="ProyectoId" required>
+                @foreach (var proyecto in Model.Proyectos)
+                {
+                    <option value="@proyecto.ProyectoId">@proyecto.Name</option>
+                }
+            </select>
+        </div>
+        <div>
+            <label for="UserId">Usuario:</label>
+            <select id="UserId" name="UserId" required>
+                @foreach (var user in Model.Usuarios)
+                {
+                    <option value="@user.UserId">@user.Name</option>
+                }
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Crear" />
+        </div>
+    </form>
+</div>
