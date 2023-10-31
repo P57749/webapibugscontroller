@@ -27,7 +27,7 @@ namespace ProyectoBugsManager.Data
         modelBuilder.Entity<Proyecto>()
         .HasMany(p => p.Errores)
         .WithOne(e => e.Proyecto)
-        .HasForeignKey(e => e.ProjectId);
+        .HasForeignKey(e => e.ProyectoId);
 
         modelBuilder.Entity<Usuario>()
         .HasMany(u => u.Errores)

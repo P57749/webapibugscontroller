@@ -12,6 +12,17 @@ using Microsoft.EntityFrameworkCore;
 
 [Route("api/[controller]")]
 [ApiController]
+
+public class BugsManagerContext : DbContext
+{
+    public DbSet<Error> Errores { get; set; }
+    public DbSet<Error> Usuarios { get; set; }
+    public DbSet<Error> Proyectos { get; set; }
+
+    // otras propiedades y métodos...
+}
+
+
 public class BugController : ControllerBase
 {
     private readonly BugsManagerContext _context;
@@ -73,19 +84,22 @@ public class BugController : ControllerBase
     }
 
     // POST: api/Bug
-//[HttpPost]
-public async Task<ActionResult<Error>> PostError(Error error)
-{
-    if (!ModelState.IsValid)
+    //[HttpPost]
+    // POST: api/Bug
+    //[HttpPost]
+    public async Task<ActionResult<Error>> PostError(Error error)
     {
-        return BadRequest(ModelState);
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        _context.Errores.Add(error); // Cambiado de _context.Error a _context.Errores
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction("GetError", new { id = error.ErrorId }, error);
     }
 
-    _context.Errors.Add(error);
-    await _context.SaveChangesAsync();
-
-    return CreatedAtAction("GetError", new { id = error.ErrorId }, error);
-}
 
 
     // DELETE: api/Bug/5
